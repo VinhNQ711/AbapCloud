@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DDLX" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DDLX>
+    <METADATA>
+     <NAME>ZME_RAP_FLIGHT</NAME>
+     <DESCRIPTION>Metadata Extension for Flight</DESCRIPTION>
+     <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
+     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+    </METADATA>
+    <DESCRIPTIONS>
+     <SEODDLXSTRCT>
+      <OBJTYPE>DDLX</OBJTYPE>
+      <OBJNAME>ZME_RAP_FLIGHT</OBJNAME>
+      <LANGU>E</LANGU>
+      <DESCRIPT>Metadata Extension for Flight</DESCRIPT>
+     </SEODDLXSTRCT>
+    </DESCRIPTIONS>
+   </DDLX>
+  </asx:values>
+ </asx:abap>
+</abapGit> 
