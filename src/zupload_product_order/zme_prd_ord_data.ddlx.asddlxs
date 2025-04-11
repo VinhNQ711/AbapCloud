@@ -1,0 +1,67 @@
+@Metadata.layer: #CORE
+annotate entity ZC_PRD_ORD_DATA with
+{
+  @UI.lineItem: [{ position: 1, label: '更新ステータス', importance: #HIGH  }]
+  Action;
+
+  @UI.lineItem: [{ position: 2, label: '製造指図', importance: #HIGH  }]
+  productionorder;
+
+  @UI.lineItem: [{ position: 3, label: '品目番号', importance: #HIGH  }]
+  product;
+
+  @UI.lineItem: [{ position: 4, label: '生産プラント', importance: #HIGH  }]
+  productionplant;
+
+  @UI.lineItem: [{ position: 5, label: '製造バージョン', importance: #HIGH  }]
+  productionversion;
+
+  @UI.lineItem: [{ position: 6, label: '指図タイプ', importance: #HIGH  }]
+  productionordertype;
+
+  @UI.lineItem: [{ position: 7, label: '製造指図の計画合計数量', importance: #HIGH  }]
+  orderplannedtotalqty;
+
+  @UI.lineItem: [{ position: 8, label: '製造単位', importance: #HIGH  }]
+  productionunit;
+
+  @UI.lineItem: [{ position: 9, label: '基本計画タイプ', importance: #HIGH  }]
+  basicschedulingtype;
+  
+  @UI.lineItem: [{ position: 10, label: 'Custom field', importance: #HIGH  }]
+  yy1_pp_demo_f0001_ord;
+  
+  @UI.lineItem: [{ position: 11, label: 'Value01', importance: #HIGH  }]
+  value01;
+  
+  @UI.lineItem: [{ position: 12, label: 'Value02', importance: #HIGH  }]
+  value02;
+  
+  @UI.lineItem: [{ position: 13, label: 'Value03', importance: #HIGH  }]
+  value03;
+
+  @UI.lineItem: [{
+    position: 100,
+    label: 'Status',
+    type: #AS_FIELDGROUP,
+    importance: #HIGH,
+    valueQualifier: 'GroupStatus'
+  }]
+  @UI.fieldGroup: [{
+    value: 'StatusText',
+    type: #STANDARD,
+    position: 1 ,
+    criticality: 'CriticalityStatus',
+    qualifier: 'GroupStatus'
+  }]
+  StatusText;
+
+  @UI.fieldGroup: [{
+    value: 'Message',
+    type: #STANDARD,
+    position: 2 ,
+    qualifier: 'GroupStatus'
+  }]
+  Message;
+
+}
