@@ -1,0 +1,83 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Flight',
+    typeNamePlural: 'Flights',
+    title: {
+      type: #STANDARD,
+      value: 'FlightId'
+    },
+    description: {
+      value: 'DeparturePoint'
+    }
+  }
+}
+annotate view ZC_RAP_FLIGHT with
+{
+  @UI.facet: [
+    {
+      id: 'Flight',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Flight Details',
+      position: 10
+    },
+    {
+      id: 'Passengers',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Passengers',
+      position: 20,
+      targetElement: '_Passengers'
+    }
+  ]
+
+  @UI.hidden: true
+  FlightId;
+
+  @UI: {
+    lineItem: [{position: 10 }],
+    identification: [{ position: 10 }],
+    selectionField: [{ position: 10 }]
+  }
+  DeparturePoint;
+
+  @UI: {
+    lineItem: [{position: 20 }],
+    identification: [{ position: 20 }],
+    selectionField: [{ position: 20 }]
+  }
+  Destination;
+
+  @UI: {
+    lineItem: [{position: 30 }],
+    identification: [{ position: 30 }],
+    selectionField: [{ position: 30 }]
+  }
+  DepartureTime;
+
+  @UI: {
+    lineItem: [{position: 40 }],
+    identification: [{ position: 40 }]
+  }
+  EstimatedDuration;
+
+  @UI: {
+    lineItem: [{position: 50 }],
+    identification: [{ position: 50 }],
+    selectionField: [{ position: 40 }]
+  }
+  FlightStatus;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+} 
