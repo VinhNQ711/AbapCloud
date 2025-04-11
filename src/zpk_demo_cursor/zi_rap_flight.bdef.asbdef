@@ -1,0 +1,69 @@
+managed implementation in class zbp_i_rap_flight unique;
+strict ( 2 );
+
+define behavior for ZI_RAP_FLIGHT alias Flight
+persistent table zrap_vnq_flight
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) FlightId;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory ) DeparturePoint, Destination, DepartureTime;
+
+  validation validateFlightTimes on save { create; update; }
+
+  association _Passengers { create; }
+
+  mapping for zrap_vnq_flight
+  {
+    FlightId = flight_id;
+    DeparturePoint = departure_point;
+    Destination = destination;
+    DepartureTime = departure_time;
+    EstimatedDuration = estimated_duration;
+    FlightStatus = flight_status;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZI_RAP_PASSENGER alias Passenger
+persistent table zrap_passngr
+lock dependent by _Flight
+authorization dependent by _Flight
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) PassengerId;
+  field ( readonly ) FlightId, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory ) FullName, IdNumber, BirthDate, Gender, SeatNumber;
+
+  validation validateSeatNumber on save { create; update; }
+  validation validateIdNumber on save { create; update; }
+
+  association _Flight;
+
+  mapping for zrap_passngr
+  {
+    PassengerId = passenger_id;
+    FlightId = flight_id;
+    FullName = full_name;
+    IdNumber = id_number;
+    BirthDate = birth_date;
+    Gender = gender;
+    SeatNumber = seat_number;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+} 
