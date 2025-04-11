@@ -1,0 +1,102 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Passenger',
+    typeNamePlural: 'Passengers',
+    title: {
+      type: #STANDARD,
+      value: 'FullName'
+    },
+    description: {
+      value: 'SeatNumber'
+    }
+  }
+}
+annotate view ZC_RAP_PASSENGER with
+{
+  @UI.facet: [
+    {
+      id: 'PassengerHeader',
+      purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Passenger Overview',
+      position: 10,
+      targetQualifier: 'HeaderInfo'
+    },
+    {
+      id: 'PassengerDetails',
+      purpose: #STANDARD,
+      type: #COLLECTION,
+      label: 'Passenger Information',
+      position: 20
+    },
+    {
+      id: 'BasicInfo',
+      parentId: 'PassengerDetails',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Basic Information',
+      position: 10,
+      targetQualifier: 'BasicGroup'
+    },
+    {
+      id: 'TravelInfo',
+      parentId: 'PassengerDetails',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Travel Information',
+      position: 20,
+      targetQualifier: 'TravelGroup'
+    }
+  ]
+
+  @UI.hidden: true
+  PassengerId;
+
+  @UI.hidden: true
+  FlightId;
+
+  @UI: {
+    lineItem: [{ position: 10, importance: #HIGH }],
+    fieldGroup: [{ qualifier: 'HeaderInfo', position: 10 },
+                { qualifier: 'BasicGroup', position: 10 }]
+  }
+  FullName;
+
+  @UI: {
+    lineItem: [{ position: 20 }],
+    fieldGroup: [{ qualifier: 'BasicGroup', position: 20 }]
+  }
+  IdNumber;
+
+  @UI: {
+    lineItem: [{ position: 30 }],
+    fieldGroup: [{ qualifier: 'BasicGroup', position: 30 }]
+  }
+  BirthDate;
+
+  @UI: {
+    lineItem: [{ position: 40 }],
+    fieldGroup: [{ qualifier: 'BasicGroup', position: 40 }]
+  }
+  Gender;
+
+  @UI: {
+    lineItem: [{ position: 50, importance: #HIGH }],
+    fieldGroup: [{ qualifier: 'HeaderInfo', position: 20 },
+                { qualifier: 'TravelGroup', position: 10 }]
+  }
+  SeatNumber;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+} 

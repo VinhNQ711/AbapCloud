@@ -1,0 +1,106 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Flight',
+    typeNamePlural: 'Flights',
+    title: {
+      type: #STANDARD,
+      value: 'FlightId'
+    },
+    description: {
+      value: 'DeparturePoint'
+    }
+  },
+  presentationVariant: [{
+    sortOrder: [{
+      by: 'DepartureTime',
+      direction: #DESC
+    }],
+    visualizations: [{
+      type: #AS_LINEITEM
+    }]
+  }]
+}
+annotate view ZC_RAP_FLIGHT with
+{
+  @UI.facet: [
+    {
+      id: 'Flight',
+      purpose: #STANDARD,
+      type: #COLLECTION,
+      label: 'Flight Information',
+      position: 10
+    },
+    {
+      id: 'GeneralInfo',
+      parentId: 'Flight',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'General Information',
+      position: 10,
+      targetQualifier: 'GeneralGroup'
+    },
+    {
+      id: 'Passengers',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Passenger List',
+      position: 20,
+      targetElement: '_Passengers'
+    }
+  ]
+
+  @UI: {
+    lineItem: [{ position: 10, importance: #HIGH }],
+    selectionField: [{ position: 10 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 10 }]
+  }
+  FlightId;
+
+  @UI: {
+    lineItem: [{ position: 20, importance: #HIGH }],
+    selectionField: [{ position: 20 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 20 }]
+  }
+  DeparturePoint;
+
+  @UI: {
+    lineItem: [{ position: 30, importance: #HIGH }],
+    selectionField: [{ position: 30 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 30 }]
+  }
+  Destination;
+
+  @UI: {
+    lineItem: [{ position: 40, importance: #HIGH }],
+    selectionField: [{ position: 40 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 40 }]
+  }
+  DepartureTime;
+
+  @UI: {
+    lineItem: [{ position: 50 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 50 }]
+  }
+  EstimatedDuration;
+
+  @UI: {
+    lineItem: [{ position: 60, criticality: 'FlightStatusCriticality' }],
+    selectionField: [{ position: 50 }],
+    fieldGroup: [{ qualifier: 'GeneralGroup', position: 60 }],
+    textArrangement: #TEXT_ONLY
+  }
+  FlightStatus;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+} 
